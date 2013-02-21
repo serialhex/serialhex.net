@@ -9,7 +9,7 @@ body {
 }
 
 div#header {
-    font-family: 'Quintessential', sans-serif;
+    font-family: 'Julee', sans-serif;
     border-bottom: 2px solid black;
     margin-bottom: 30px;
     padding: 12px 0px 12px 0px;
@@ -61,7 +61,7 @@ div.note {
 }
 
 div.info {
-    color: #555;
+    color: #888;
     font-size: 14px;
     font-style: italic;
 }

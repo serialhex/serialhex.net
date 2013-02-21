@@ -1,4 +1,4 @@
-/* espresso theme */
+/* zenburn theme */
 
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0;
@@ -8,8 +8,9 @@ table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
 }
 table.sourceCode {
   font-family: 'Inconsolata', sans-serif;
+  font-size: 14px;
   width: 100%;
-  line-height: 110%;
+  /*line-height: 110%;*/
   border-collapse: collapse;
   width: 90%;
   margin-left:auto;
