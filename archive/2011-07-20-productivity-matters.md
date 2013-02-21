@@ -1,0 +1,7 @@
+---
+title: productivity matters
+layout: post
+date: 2011-07-20
+---
+
+so i finished watching [this video on productivity](http://vimeo.com/16227360 "Jane McGonigal - On Productivity") and i realized, i'm much more productive when i *don't* have a job than when i do.  that's not to say that i don't do my work well, or even enjoy my work.  but i'm more 'i just did the laundry' kind of productive than 'i made my or somebody elses life better'.  though in a sense fixing peoples computers makes other peoples lives better (usually they can get some work done, or look at more porn) but it definitely dosn't make the lives of people immediately surrounding me better... except now i have more money & can take them out to lunch or whatever, though that's beside the point.  really i have't done any self-study, i havn't learned anything new since i got my new job.  and while i *love* being able to work and 'do something productive' i feel like i'm slacking on other parts of my life & education.  and while i'm not about to quit my job, it's something to think about.  i do my best learning when i don't have any requirements of me.  when i can just __be__ and relax and learn on my own.  something i must ponder on further...
