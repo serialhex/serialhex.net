@@ -1,41 +1,91 @@
-/* zenburn theme */
+/* ============================================================
+   Syntax highlighting — deep water (violet / teal / blue)
+   Supports pandoc's table-based code blocks (td.lineNumbers +
+   td.sourceCode) and the plain <pre class="sourceCode"> form.
+   ============================================================ */
 
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+table.sourceCode,
+tr.sourceCode,
+td.lineNumbers,
+td.sourceCode {
   margin: 0;
   padding: 0;
-  vertical-align: baseline;
-  border: 1px solid #bdae9d;
+  border: 0;
+  vertical-align: top;
 }
+
 table.sourceCode {
-  font-family: 'Inconsolata', sans-serif;
-  font-size: 14px;
   width: 100%;
-  /*line-height: 110%;*/
-  border-collapse: collapse;
-  width: 90%;
-  margin-left:auto;
-  margin-right:auto;
-  background-color: #303030;
-  color: #cccccc;
+  max-width: 100%;
+  margin: 0 0 1.45rem;
+  border: 1px solid var(--border, #2e2b48);
+  border-radius: var(--radius, 8px);
+  background: var(--bg-soft, #0b0a13);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  font-family: var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+  font-size: 0.82rem;
+  line-height: 1.6;
 }
+
+table.sourceCode pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+  font: inherit;
+}
+
 td.lineNumbers {
-  width:15px;
+  width: 1%;
+  min-width: 2.6em;
+  padding: 1rem 0.55rem 1rem 0.9rem;
   text-align: right;
-  padding-right: 4px;
-  padding-left: 4px;
-  border-right: 1px solid #bdae9d;
+  color: #514d70;
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid var(--border, #2e2b48);
+  user-select: none;
+  -webkit-user-select: none;
 }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #cccccc; background-color: #303030; }
-code > span.kw { color: #f0dfaf; }
-code > span.dt { color: #dfdfbf; }
-code > span.dv { color: #dcdccc; }
-code > span.bn { color: #dca3a3; }
-code > span.fl { color: #c0bed1; }
-code > span.ch { color: #dca3a3; }
-code > span.st { color: #cc9393; }
-code > span.co { color: #7f9f7f; }
-code > span.ot { color: #efef8f; }
-code > span.al { color: #ffcfaf; }
-code > span.fu { color: #efef8f; }
-code > span.er { color: #c3bf9f; }
+
+td.sourceCode {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+}
+
+/* plain <pre class="sourceCode"> blocks inherit the generic
+   pre styling from default.css; only the tokens are set here. */
+
+/* ---- tokens ---- */
+code > span.kw { color: #a68bf5; }                          /* keyword          */
+code > span.cf { color: #a68bf5; }                          /* control flow     */
+code > span.im { color: #a68bf5; }                          /* import           */
+code > span.pp { color: #a68bf5; }                          /* preprocessor     */
+code > span.dt { color: #8be9c9; }                          /* data type        */
+code > span.at { color: #8be9c9; }                          /* attribute        */
+code > span.sc { color: #8be9c9; }                          /* special char     */
+code > span.dv { color: #e59bd9; }                          /* decimal literal  */
+code > span.bn { color: #e59bd9; }                          /* base-n literal   */
+code > span.fl { color: #e59bd9; }                          /* float literal    */
+code > span.cn { color: #c9a9ff; }                          /* constant         */
+code > span.ch { color: #63c9c8; }                          /* char             */
+code > span.st { color: #63c9c8; }                          /* string           */
+code > span.vs { color: #63c9c8; }                          /* verbatim string  */
+code > span.ss { color: #63c9c8; }                          /* special string   */
+code > span.co { color: #6b6890; font-style: italic; }      /* comment          */
+code > span.do { color: #6b6890; font-style: italic; }      /* documentation    */
+code > span.an { color: #6b6890; }                          /* annotation       */
+code > span.cv { color: #6b6890; }                          /* comment var      */
+code > span.ot { color: #7ad7e0; }                          /* other            */
+code > span.op { color: #7ad7e0; }                          /* operator         */
+code > span.fu { color: #9bb8ff; }                          /* function         */
+code > span.bu { color: #9bb8ff; }                          /* builtin          */
+code > span.ex { color: #9bb8ff; }                          /* extension        */
+code > span.va { color: #cdc9ec; }                          /* variable         */
+code > span.wa { color: #e5c07b; font-style: italic; }      /* warning          */
+code > span.al { color: #ff8ab0; font-weight: 700; }        /* alert            */
+code > span.er { color: #ff8ab0; text-decoration: underline; } /* error         */

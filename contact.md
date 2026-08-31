@@ -2,5 +2,5 @@
 title: Contact
 ---
 
-E-mail - <serialhex@lavabit.com>
-Phone Number: (772) 643-2425
+- **E-mail:** <serialhex@lavabit.com>
+- **Phone:** (772) 643-2425

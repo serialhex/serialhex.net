@@ -1,0 +1,136 @@
+================================================================
+  DESIGN-NOTES.txt  --  the animated <hr> wave, and a couple gotchas
+================================================================
+
+(This file sits at the repo root on purpose: site.hs has a
+`match "css/*"` rule that would run anything under css/ through the
+CSS compressor and publish it. Nothing matches root *.txt, so this
+stays a repo-only doc.)
+
+Everything below lives in css/default.css. After any edit, rebuild
+with `./site build` (or just leave `./site preview` running) and
+hard-refresh the browser (Ctrl-Shift-R) -- the preview server sends
+a long cache header for stylesheets.
+
+
+----------------------------------------------------------------
+1. THE SECTION-BREAK WAVE  (every <hr>, and post sign-offs)
+----------------------------------------------------------------
+
+The wave is NOT an image file, a GIF, or JavaScript. It is:
+
+  - one SVG wave, exactly ONE period wide (16px), encoded inline
+    as a data: URI in the `background` property of `:where(.content hr)`
+  - tiled horizontally with `repeat-x`
+  - scrolled forever by @keyframes `hr-wave`, which slides
+    `background-position` by exactly one period (16px). Because the
+    SVG path starts and ends at the same height AND the same slope,
+    the tile seam is invisible and the loop is seamless.
+  - a second @keyframes, `hr-wave-glow`, breathes the violet
+    drop-shadow bigger/smaller on a slower cycle -> it shimmers
+    while it travels.
+
+Relevant CSS (in default.css, search for "section break"):
+
+  :where(.content hr) {
+    width: 96px;                 <- how long the wave segment is
+    height: 14px;                <- vertical room; must match the "/ 16px 14px"
+    background: url("data:image/svg+xml,...") repeat-x 0 50% / 16px 14px;
+    filter: drop-shadow(0 0 5px rgba(166,139,245,0.55));   <- static fallback glow
+    animation: hr-wave 2.4s linear infinite,
+               hr-wave-glow 3.6s ease-in-out infinite alternate;
+  }
+  @keyframes hr-wave      { to { background-position: 16px 50%; } }
+  @keyframes hr-wave-glow {
+    from { filter: drop-shadow(0 0 3px rgba(166,139,245,0.4)); }
+    to   { filter: drop-shadow(0 0 9px rgba(166,139,245,0.75)); }
+  }
+
+KNOBS
+-----
+
+speed of travel
+    `hr-wave 2.4s` -> smaller number = faster. 1.2s is brisk,
+    4s is a slow drift.
+
+direction of travel
+    `to { background-position: 16px 50%; }` scrolls the wave to the
+    RIGHT. Change 16px to -16px to send it LEFT.
+    (Any multiple of 16px works; it just has to be a whole number
+    of periods or the loop will jump.)
+
+shimmer / breathing glow
+    `hr-wave-glow 3.6s` -> rate of the pulse.
+    The two drop-shadow lines in the keyframes set the dim end and
+    the bright end: first number after "0 0" is blur radius (px),
+    last number is opacity (0-1). Bump the "to" values for a
+    stronger throb; make "from" and "to" equal (or delete the
+    hr-wave-glow animation) for a steady glow.
+
+turn the shimmer off, keep the travel
+    animation: hr-wave 2.4s linear infinite;
+    (the static `filter:` line then provides a constant glow)
+
+length of the wave
+    `width: 96px` on :where(.content hr). 96 = 6 periods. Use a
+    multiple of 16 to keep whole humps.
+
+wave height / choppiness
+    In the data: URI the path is  M0 7 q 4 -5 8 0 t 8 0
+    The  -5  is the amplitude pull. Closer to 0 = flatter/calmer,
+    more negative (e.g. -7) = taller/choppier. The 7 is the vertical
+    centre line (half of the 14 height). Keep start/end y equal or
+    the tiling seam reappears.
+
+colour
+    Two places, keep them in sync:
+      - stroke='%23a68bf5' inside the data: URI  (%23 == '#')
+      - the rgba(166,139,245,...) values in the filter / keyframes
+        (166,139,245 == #a68bf5)
+    #a68bf5 is --accent (the bioluminescent violet). To use the
+    teal instead: stroke='%2363c9c8' and rgba(99,201,200,...).
+
+thickness
+    stroke-width='2' in the data: URI.
+
+reduced motion
+    Users with "reduce motion" set get NO animation (both keyframes
+    are disabled in the @media (prefers-reduced-motion: reduce)
+    block near the bottom of default.css) -- they see the static
+    glowing wave. Leave that block alone.
+
+
+----------------------------------------------------------------
+2. GOTCHAS when editing default.css / source.css
+----------------------------------------------------------------
+
+* CSS is run through Hakyll's compressCssCompiler, which STRIPS
+  WHITESPACE BEFORE ':'. That silently turns a descendant selector
+  like
+
+      :where(.content) :where(a) { ... }        (two selectors)
+
+  into
+
+      :where(.content):where(a) { ... }         (one, matches nothing)
+
+  So the whole prose block is written as  :where(.content a),
+  :where(.content h1, .content h2), etc. -- descendant combinator
+  kept INSIDE the parens. Don't "tidy" it back out.
+  Quick check before a build:   grep -nE '[a-z0-9)] +:' css/*.css
+  (should only match text inside comments)
+
+* Space before '.' or a letter survives fine, so
+  `.post-list__item:hover .post-list__link` is safe.
+
+* ::before / ::after do NOT render on <hr> in Firefox. That's why
+  the wave is drawn as the <hr>'s own background rather than a
+  pseudo-element.
+
+* Animating inside a background SVG (SMIL or CSS-in-SVG) does NOT
+  run -- background images are frozen. The animation has to be on
+  the HTML element (here: background-position on the <hr>).
+
+* No local Haskell toolchain, so site.hs cannot be recompiled --
+  only templates/, css/, and the .md / index.html content feed the
+  prebuilt ./site binary.
