@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The S.P.A.C.E. System — GM Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scanline"></div>
+
+<div class="page">
+
+  <header>
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+    <p class="title-sub">Tabletop Roleplaying Framework // GM &amp; AI Reference</p>
+    <h1>GM <span>REFERENCE</span></h1>
+    <div class="title-rule"></div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="space_system.html">Rules</a>
+      <a href="space_pregens.html">Pregens</a>
+      <a href="space_gm_rules.html" class="current">GM Reference</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="section-label">Core Philosophy</div>
+    <div class="big-rule">
+      <ul>
+        <li>Stats are broad. Rulings beat rules. If a player can justify it, let them try.</li>
+        <li>The GM sets tone and difficulty. The dice create surprise.</li>
+        <li>Combat is fast and dangerous. Three wounds ends a fight.</li>
+        <li>The system rewards creative stat use over optimized builds.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">The Five Stats</div>
+    <div class="big-rule">
+      <table>
+        <tr><th>Stat</th><th>Full Name</th><th>Covers</th></tr>
+        <tr><td>S</td><td>STEM</td><td>Science, technology, engineering, math. Hacking, repairs, navigation, medicine, jury-rigging.</td></tr>
+        <tr><td>P</td><td>Presence</td><td>Charisma, likeability, force of personality. Persuasion, deception, leadership, performance.</td></tr>
+        <tr><td>A</td><td>Athletics</td><td>Physical capability. Combat, running, climbing, piloting by feel, brawling, shooting.</td></tr>
+        <tr><td>C</td><td>Culture</td><td>Knowledge of peoples, customs, history, arts, religion, etiquette. Knowing the right thing to say to the right species.</td></tr>
+        <tr><td>E</td><td>Extra</td><td>The inexplicable. Luck, magic, void powers, psionics, or simply being the kind of person doors open for. Highly genre-dependent.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Character Creation</div>
+
+    <div class="sub-label">Stats</div>
+    <div class="big-rule">
+      <ul>
+        <li>All five stats begin at <span class="mono">1</span>.</li>
+        <li>Raise <span class="mono">three</span> stats to <span class="mono">2</span>, and <span class="mono">one</span> stat to <span class="mono">3</span>.</li>
+        <li>One stat remains at <span class="mono m">1</span>. This is a meaningful weakness.</li>
+      </ul>
+    </div>
+
+    <div class="sub-label">Specializations (1–3)</div>
+    <div class="big-rule">
+      <p>Narrow areas of expertise within a stat. Each adds <span class="mono a">+1 die</span> when the specialization applies.</p>
+      <ul>
+        <li>Must be specific enough to sometimes NOT apply.</li>
+        <li>Examples: "Warp Drive Systems" (S), "Zero-G Combat" (A), "Keth Diplomatic Protocol" (C), "Sleight of Hand" (A/P).</li>
+        <li>GM adjudicates edge cases. When in doubt, allow it.</li>
+      </ul>
+    </div>
+
+    <div class="sub-label">Quirks (1–2)</div>
+    <div class="big-rule">
+      <p>Character-defining traits that bend the rules without adding dice.</p>
+      <ul>
+        <li><strong>Cannot add dice</strong> to a roll.</li>
+        <li><strong>Can reassign which stat applies</strong> to a situation.</li>
+        <li><strong>Can grant automatic minor successes</strong> on very narrow tasks.</li>
+        <li><strong>Can provide once-per-scene or once-per-session abilities.</strong></li>
+        <li>Must be approved by GM. Should reflect character concept, not just mechanical optimization.</li>
+      </ul>
+
+      <p style="margin-top:1rem;"><strong>Quirk design guidelines:</strong></p>
+      <ul>
+        <li>Stat reassignment: "May use [X] instead of [Y] when [specific condition]."</li>
+        <li>Passive immunity: "Immune to [specific effect]."</li>
+        <li>Narrative ability: "Once per scene/session, [do specific thing]. GM determines how it manifests."</li>
+        <li>Mechanical edge: "The first [X] each scene does not [negative effect]."</li>
+      </ul>
+
+      <p style="margin-top:1rem;"><strong>Example Quirks:</strong></p>
+      <ul>
+        <li><em>Pretty Sword Technique</em> — May use A instead of P to impress or intimidate when bladework is visible.</li>
+        <li><em>Precognition</em> — Once per scene, ask the GM one yes/no question about what is about to happen. GM answers honestly.</li>
+        <li><em>Bedside Manner</em> — May use S instead of P when calming panicked or hostile people through clinical authority.</li>
+        <li><em>Takes a Licking</em> — First wound each scene does not subtract from defense rolls.</li>
+        <li><em>Doors Open</em> — May use E for any check involving luck, coincidence, or improbable timing.</li>
+        <li><em>Empathy Read</em> — Knows when someone is lying. No roll required. GM must answer honestly when this applies.</li>
+      </ul>
+    </div>
+
+    <div class="sub-label">Study Up</div>
+    <div class="big-rule">
+      <ul>
+        <li>Once per session, a character may declare they are studying a subject.</li>
+        <li>They gain <span class="mono a">+1 die</span> on rolls involving that subject for the session.</li>
+        <li>Stacks with a matching specialization (+2 dice total).</li>
+        <li>GM may suggest subjects at session start. Players may choose their own.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Rolling Dice</div>
+    <div class="big-rule">
+      <ul>
+        <li>Roll a number of d6s equal to the relevant stat, plus any specialization or study dice.</li>
+        <li><span class="mono">4, 5, or 6</span> = one success.</li>
+        <li><span class="mono m">1</span> = cancels one success.</li>
+        <li><span class="mono">2, 3</span> = nothing.</li>
+        <li>Net successes after cancellation determine outcome.</li>
+      </ul>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule-block">
+        <div class="rule-title">Solo Checks</div>
+        <p style="margin-bottom:0.6rem;">GM sets a difficulty:</p>
+        <ul>
+          <li><span class="mono">1 success</span> — Easy. Routine for a competent person.</li>
+          <li><span class="mono">2 successes</span> — Moderate. Requires focus or skill.</li>
+          <li><span class="mono">3 successes</span> — Hard. Exceptional effort or expertise needed.</li>
+        </ul>
+        <p style="margin-top:0.6rem;">Partial successes can be used narratively — the character succeeds with a cost, or makes progress but not completion.</p>
+      </div>
+      <div class="rule-block magenta">
+        <div class="rule-title">Contested Rolls</div>
+        <ul>
+          <li>Both parties choose a relevant stat and roll simultaneously.</li>
+          <li>Most successes wins.</li>
+          <li><strong>Tie:</strong> Both reroll.</li>
+          <li>Loser suffers the consequence of losing.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Combat</div>
+
+    <div class="sub-label">Structure</div>
+    <div class="big-rule">
+      <p>Combat uses contested rolls. There is no fixed initiative — GM narrates the exchange and calls for rolls when the outcome is uncertain.</p>
+    </div>
+
+    <div class="sub-label">Attacking</div>
+    <div class="big-rule">
+      <ul>
+        <li>Attacker chooses a stat appropriate to their method and rolls.</li>
+        <li>Defender chooses a stat appropriate to their defense and rolls.</li>
+        <li>If attacker wins: defender takes a wound.</li>
+        <li>If defender wins or ties (after reroll): no wound.</li>
+      </ul>
+    </div>
+
+    <div class="sub-label">Stat Selection in Combat</div>
+    <div class="big-rule">
+      <p style="margin-bottom:0.75rem;">Use whatever is narratively justified. Players may propose unusual stats — GM approves or redirects.</p>
+      <table>
+        <tr><th>Method</th><th>Suggested Stat</th></tr>
+        <tr><td>Melee weapon, brawling</td><td>A</td></tr>
+        <tr><td>Ranged weapon, shooting</td><td>A</td></tr>
+        <tr><td>Manning a turret or weapon console</td><td>S</td></tr>
+        <tr><td>Talking someone down mid-fight</td><td>P</td></tr>
+        <tr><td>Devastating cultural insult</td><td>C (GM's call)</td></tr>
+        <tr><td>Improbable lucky shot</td><td>E</td></tr>
+        <tr><td>Anything else creative</td><td>GM's call</td></tr>
+      </table>
+      <p style="margin-top:0.75rem;">The GM should reward creative stat use that is genuinely justified, not just min-maxing.</p>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule-block amber">
+        <div class="rule-title">Wounds</div>
+        <ul>
+          <li>Characters have <span class="mono a">3 wound slots</span>.</li>
+          <li>Current wound count subtracts from defense rolls (not attack rolls).</li>
+          <li>1 wound = –1 die on defense.</li>
+          <li>2 wounds = –2 dice on defense.</li>
+          <li>3 wounds = <strong>unconscious</strong>. Out of the scene.</li>
+          <li>A character cannot die from wounds alone unless the narrative demands it (GM discretion, player consent recommended).</li>
+        </ul>
+      </div>
+      <div class="rule-block">
+        <div class="rule-title">Healing</div>
+        <ul>
+          <li>Any character may attempt a healing check on a wounded ally.</li>
+          <li>Roll S or P (or another stat if justified).</li>
+          <li>Difficulty 1 for minor wounds, 2 for serious, 3 for critical.</li>
+          <li>Success reduces wounds by 1.</li>
+          <li>Once per wound per scene unless circumstances change significantly.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">GM Guidance</div>
+
+    <div class="sub-label">Setting Difficulty</div>
+    <div class="big-rule">
+      <ul>
+        <li>Default to difficulty 1 unless there's a specific reason it should be harder.</li>
+        <li>Difficulty 3 should feel like a genuine challenge even for a specialist.</li>
+        <li>Don't call for rolls on trivial tasks. Only roll when failure is interesting.</li>
+      </ul>
+    </div>
+
+    <div class="sub-label">Handling E (Extra)</div>
+    <div class="big-rule">
+      <ul>
+        <li>In a grounded setting: E is pure luck and narrative convenience.</li>
+        <li>In a genre with powers: E is the fuel for abilities. Specializations define what powers exist.</li>
+        <li>The same mechanical stat works across genres — the fiction changes, the dice don't.</li>
+      </ul>
+    </div>
+
+    <div class="sub-label">NPC &amp; Enemy Construction</div>
+    <div class="big-rule">
+      <p style="margin-bottom:0.75rem;">NPCs do not need full character sheets. Use the minimum needed for the scene. <strong>NPCs generally take only one specialization or quirk</strong> — keep them fast to run.</p>
+      <ul>
+        <li><strong>Mook:</strong> One relevant stat at 2. No specializations. 1 wound = out.</li>
+        <li><strong>Named NPC:</strong> Two or three stats at 2, one at 3. One specialization. 2–3 wounds.</li>
+        <li><strong>Boss/Antagonist:</strong> Full stat spread (same creation rules as players). One quirk. 3 wounds. Consider a special mechanic for their final wound.</li>
+      </ul>
+      <p style="margin-top:0.75rem;">For any NPC, only stat out what will come up. A diplomat doesn't need an A stat until someone throws a punch.</p>
+    </div>
+
+    <div class="sub-label">Pacing Combat</div>
+    <div class="big-rule">
+      <ul>
+        <li>Keep exchanges tight. One contested roll usually resolves one beat of action.</li>
+        <li>Let players narrate their successes. Ask "how do you do it?" not just "you hit."</li>
+        <li>Wounds on players create tension. Wounds on NPCs create momentum. Use both.</li>
+        <li>A scene with 2–3 exchanges of contested rolls is plenty. More than 5 starts to drag.</li>
+      </ul>
+    </div>
+
+    <div class="sub-label">Using Quirks as GM</div>
+    <div class="big-rule">
+      <ul>
+        <li>Quirks are player tools, but GM controls the fiction they interact with.</li>
+        <li>"Precognition" is only as good as the GM's answer. Answer honestly but with appropriate narrative framing.</li>
+        <li>"Empathy Read" means the GM cannot have an NPC successfully lie to that character. Plan accordingly.</li>
+        <li>Quirks that say "once per scene" reset when the fiction clearly changes location or focus.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Quick NPC Builder</div>
+    <div class="big-rule">
+      <p style="margin-bottom:0.5rem;">Copy and fill:</p>
+      <div class="code-block">Name:
+Species/Type:
+Role in scene:
+S[ ] P[ ] A[ ] C[ ] E[ ]
+Specialization (if any):
+Quirk (if any):
+Wounds: [ ][ ][ ]
+Motive:
+Secret (if any):</div>
+      <ul style="margin-top:1rem;">
+        <li><strong>Mook template:</strong> Pick one stat at 2, rest at 1. 1 wound = down. No quirks.</li>
+        <li><strong>Named NPC template:</strong> One stat at 3, two at 2, two at 1. One specialization. 2 wounds.</li>
+        <li><strong>Antagonist template:</strong> One stat at 3, three at 2, one at 1. One specialization. One quirk. 3 wounds.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Quick Player Character Builder</div>
+    <div class="big-rule">
+      <div class="code-block">Name:
+Species:
+Concept (one line):
+S[ ] P[ ] A[ ] C[ ] E[ ]
+  — Raise three stats to 2, one stat to 3. One remains at 1.
+Specializations (1–3):
+  1.
+  2.
+  3.
+Quirks (1–2):
+  1.
+  2.
+Study Up this session:
+Wounds: [ ][ ][ ]
+Notes / Flavor:</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Scenario Seeds</div>
+
+    <div class="seed-card">
+      <div class="seed-title">The Negotiation Gone Wrong</div>
+      <p>Two factions meet to broker a deal. The players are neutral intermediaries — mediators, escorts, or observers with their own agenda. A third party disrupts the meeting with violence. Now the players must survive, identify who ordered the hit, and decide whether the deal is still worth saving. One faction may have been negotiating in bad faith. The assassins may have been hired by someone at the table.</p>
+      <div class="seed-rolls">Key rolls: P and C for negotiation, A for the ambush, S for identifying the attack's origin, E for getting out when everything goes sideways.</div>
+    </div>
+
+    <div class="seed-card">
+      <div class="seed-title">Galaxy's Got Talent (Reality TV Gone Dark)</div>
+      <p>The players are contestants on a wildly popular interstellar reality competition. The show is glamorous, the challenges are brutal, and the production company is not what it appears. Eliminated contestants aren't just sent home — they're stranded, sold, or worse. The players must figure out what's really happening, survive the challenges in the meantime, and find a way off before they're next.</p>
+      <div class="seed-rolls">Key rolls: P for camera presence and social maneuvering, A for physical challenges, S for figuring out the rigged equipment, C for reading the other contestants and crew, E for the moments when only luck saves you.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">System Summary (Paste Into AI Prompt)</div>
+    <div class="quote-block">
+      This adventure uses the S.P.A.C.E. System, a lightweight genre-agnostic RPG. Characters have five stats (STEM, Presence, Athletics, Culture, Extra) rated 1–3. Players roll that many d6s; 4–6 = success, 1s cancel successes. Solo checks require 1–3 successes (GM sets difficulty). Contested rolls go to the most successes; ties reroll. In combat, attacker and defender both roll — defender takes a wound if the attacker wins. Wounds subtract from future defense rolls; 3 wounds = unconscious. Characters have 1–3 specializations (+1 die each) and 1–2 quirks (bend the rules, can't add dice) — NPCs generally take only one of either. Once per session each character may Study Up for +1 die on one subject. Use whatever stat is narratively appropriate — creative justification is encouraged and GM-approved. Keep combat to 2–3 exchanges. NPCs need only the stats that matter for the scene.
+    </div>
+  </section>
+
+  <footer>
+    <span class="blink">█</span> THE S.P.A.C.E. SYSTEM // GM &amp; AI REFERENCE // RULINGS BEAT RULES <span class="blink">█</span>
+  </footer>
+
+</div>
+</body>
+</html>

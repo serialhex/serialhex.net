@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The S.P.A.C.E. System</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scanline"></div>
+
+<div class="page">
+
+  <header>
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+    <p class="title-sub">Tabletop Roleplaying Framework // v1.0</p>
+    <h1>S<span>.</span>P<span>.</span>A<span>.</span>C<span>.</span>E<span>.</span></h1>
+    <div class="title-rule"></div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="space_system.html" class="current">Rules</a>
+      <a href="space_pregens.html">Pregens</a>
+      <a href="space_gm_rules.html">GM Reference</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="section-label">Core Statistics</div>
+    <div class="stat-grid">
+      <div class="stat-card s-card">
+        <div class="stat-letter">S</div>
+        <div class="stat-word">STEM</div>
+        <div class="stat-desc">Science, Technology, Engineering, Math. Hacking consoles, repairing drives, plotting warp trajectories.</div>
+      </div>
+      <div class="stat-card p-card">
+        <div class="stat-letter">P</div>
+        <div class="stat-word">Presence</div>
+        <div class="stat-desc">Likeability, charisma, force of personality. Talking your way in — or out.</div>
+      </div>
+      <div class="stat-card a-card">
+        <div class="stat-letter">A</div>
+        <div class="stat-word">Athletics</div>
+        <div class="stat-desc">Physical ability — running, climbing, brawling, shooting. What your body can do.</div>
+      </div>
+      <div class="stat-card c-card">
+        <div class="stat-letter">C</div>
+        <div class="stat-word">Culture</div>
+        <div class="stat-desc">Knowledge of other peoples, customs, arts. Knowing which fork to use — and which god not to name.</div>
+      </div>
+      <div class="stat-card e-card">
+        <div class="stat-letter">E</div>
+        <div class="stat-word">Extra</div>
+        <div class="stat-desc">The inexplicable edge. Luck, magic, void powers, or simply being the kind of person doors open for.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Character Creation</div>
+    <div class="big-rule">
+      <table class="creation-table">
+        <tr>
+          <td>Base</td>
+          <td>All five stats begin at <span class="mono">1</span></td>
+        </tr>
+        <tr>
+          <td>Distribute</td>
+          <td>Raise <span class="mono">three</span> stats to <span class="mono">2</span>, and <span class="mono">one</span> stat to <span class="mono">3</span></td>
+        </tr>
+        <tr>
+          <td>Specializations</td>
+          <td>Choose <span class="mono">1–3</span> areas of expertise. Each adds <span class="mono">+1 die</span> when relevant. Must justify to GM.</td>
+        </tr>
+        <tr>
+          <td>Quirks</td>
+          <td>Take <span class="mono">1–2</span> quirks. Can't add dice — but can reassign <em>which</em> stat applies. GM approves.</td>
+        </tr>
+        <tr>
+          <td>Study Up</td>
+          <td>Once per session, gain <span class="mono">+1 die</span> on one subject. Stacks with matching specialization.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">The Dice</div>
+    <div class="big-rule">
+      <p style="font-size:0.88rem; margin-bottom:1rem; opacity:0.85;">Roll a number of d6s equal to your relevant stat (plus any specialization or study dice).</p>
+      <div class="dice-display">
+        <div class="die-wrap"><div class="die success">4</div><div class="die-label">SUCCESS</div></div>
+        <div class="die-wrap"><div class="die success">5</div><div class="die-label">SUCCESS</div></div>
+        <div class="die-wrap"><div class="die success">6</div><div class="die-label">SUCCESS</div></div>
+        <div class="die-wrap"><div class="die fail">1</div><div class="die-label">CANCELS ONE</div></div>
+        <div class="arrow">→</div>
+        <p style="font-size:0.85rem; max-width:200px; opacity:0.9;"><span class="mono">4, 5, and 6</span> are successes. <span class="mono m">1s</span> cancel one success each. <span class="mono">2s and 3s</span> do nothing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Checks &amp; Conflict</div>
+    <div class="rules-grid">
+      <div class="rule-block">
+        <div class="rule-title">Solo Check</div>
+        <ul>
+          <li>GM sets difficulty: <span class="mono">1</span> easy, <span class="mono">2</span> moderate, <span class="mono">3</span> hard</li>
+          <li>Meet or beat the number of successes required</li>
+          <li>Choose whichever stat fits what you're doing</li>
+        </ul>
+      </div>
+      <div class="rule-block magenta">
+        <div class="rule-title">Contested Roll</div>
+        <ul>
+          <li>Both sides choose a stat and roll</li>
+          <li>Most successes wins</li>
+          <li>Tie: reroll</li>
+          <li>Loser suffers the consequence</li>
+        </ul>
+      </div>
+      <div class="rule-block amber">
+        <div class="rule-title">Combat</div>
+        <ul>
+          <li>Attacker and defender both roll — contested</li>
+          <li>Use whatever stat fits: <span class="mono a">A</span> for weapons, <span class="mono">S</span> for turrets, <span class="mono a">P</span> for a devastating insult</li>
+          <li>If the attacker wins, defender takes a <span class="mono a">wound</span></li>
+          <li>Convince the GM, anything goes</li>
+        </ul>
+        <p class="quirk-example">"Something particularly devastating about their hive mother" → C roll, GM's call</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Wounds &amp; Healing</div>
+    <div class="big-rule">
+      <p style="font-size:0.88rem; margin-bottom:1rem; opacity:0.85;">Wounds make you worse. Current wound count subtracts from your defense rolls.</p>
+      <div class="wound-track">
+        <div class="wound-pip filled"></div>
+        <div class="wound-pip"></div>
+        <div class="wound-pip"></div>
+        <span style="font-family:'Share Tech Mono',monospace; font-size:0.8rem; color:var(--dim); margin-left:0.75rem;">1 wound — –1 die on defense</span>
+      </div>
+      <div class="wound-track">
+        <div class="wound-pip filled"></div>
+        <div class="wound-pip filled"></div>
+        <div class="wound-pip"></div>
+        <span style="font-family:'Share Tech Mono',monospace; font-size:0.8rem; color:var(--dim); margin-left:0.75rem;">2 wounds — –2 dice on defense</span>
+      </div>
+      <div class="wound-track">
+        <div class="wound-pip filled"></div>
+        <div class="wound-pip filled"></div>
+        <div class="wound-pip filled"></div>
+        <span style="font-family:'Share Tech Mono',monospace; font-size:0.8rem; color:var(--magenta); margin-left:0.75rem; text-shadow: var(--glow-m);">3 wounds — UNCONSCIOUS</span>
+      </div>
+      <p style="font-size:0.85rem; margin-top:1rem; opacity:0.85;"><span class="mono">Healing:</span> Someone rolls a difficulty 1+ check (S or P, usually). Success reduces wounds by 1.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Quirk Examples</div>
+    <div class="rules-grid">
+      <div class="rule-block">
+        <div class="rule-title">Pretty Sword Technique</div>
+        <p>May use <span class="mono">A</span> to impress or intimidate in social situations involving visible bladework — no further justification needed.</p>
+      </div>
+      <div class="rule-block magenta">
+        <div class="rule-title">Precognition</div>
+        <p>Once per scene, ask the GM one yes/no question about what's about to happen. Use <span class="mono m">E</span> for anything requiring a roll.</p>
+      </div>
+      <div class="rule-block amber">
+        <div class="rule-title">Empathy Read</div>
+        <p>You <em>know</em> when someone's lying. No roll required — GM must tell you honestly. Changes every negotiation.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="blink">█</span> THE S.P.A.C.E. SYSTEM // GENRE-AGNOSTIC TABLETOP RPG // FIT YOUR CHARACTER ON A 3×5 CARD <span class="blink">█</span>
+  </footer>
+
+</div>
+</body>
+</html>
