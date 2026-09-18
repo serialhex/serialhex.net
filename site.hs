@@ -104,5 +104,5 @@ pandocOptions = defaultHakyllWriterOptions
 config :: Configuration
 config = defaultConfiguration
     { deployCommand = "rsync --checksum -r \
-                      \_site/* serialhex_serialhex@ssh.phx.nearlyfreespeech.net:/home/public"
+                      \_site/* serialhex_serialhex@ssh.nyc1.nearlyfreespeech.net:/home/public"
     }
