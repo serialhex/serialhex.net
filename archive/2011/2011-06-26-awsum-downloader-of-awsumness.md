@@ -16,7 +16,7 @@ ok, so it may not be the *coolest* program ever, or even nicely commented, or ev
 
 yeah, so i hacked this thing together in ~1.5 hrs maybe more, but whatever.  so here is the code (with names changed to protect the innocent):
 
-{% codeblock lang:ruby %}
+```ruby
 #!/usr/bin/env ruby
 
 require 'nokogiri'
@@ -65,7 +65,7 @@ stuff.each do |page|
     # yeah, so far thi isn't very DRY at all.. in fact it's fucking WET!!!
   end
 end
-{% endcodeblock %}
+```
 
 *note: i __am__ going to fix the coloring... eventually.  for now read the [gist][]*  
 

@@ -26,7 +26,7 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "archive/2013/*" $ do
+    match ("archive/2011/*" .||. "archive/2013/*") $ do
         route $ setExtension "html"
         compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
@@ -91,7 +91,7 @@ postList pat sortFilter = do
     return list
 
 allPosts :: Pattern
-allPosts = "posts/*" .||. "archive/2013/*"
+allPosts = "posts/*" .||. "archive/2011/*" .||. "archive/2013/*"
 
 --------------------------------------------------------------------------------
 
