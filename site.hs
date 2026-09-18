@@ -26,6 +26,20 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
+    match "archive/2013/*" $ do
+        route $ setExtension "html"
+        compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
+            >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= relativizeUrls
+
+    match "games.html" $ do
+        route idRoute
+        compile $ getResourceBody
+            >>= applyAsTemplate defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= relativizeUrls
+
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
@@ -37,7 +51,7 @@ main = hakyllWith config $ do
         route idRoute
         compile $ do
             let archiveCtx =
-                    field "posts" (\_ -> postList recentFirst) `mappend`
+                    field "posts" (\_ -> postList allPosts recentFirst) `mappend`
                     constField "title" "Archives"              `mappend`
                     defaultContext
 
@@ -51,7 +65,7 @@ main = hakyllWith config $ do
         route idRoute
         compile $ do
             let indexCtx = field "posts" $ \_ ->
-                                postList $ fmap (take 3) . recentFirst
+                                postList "posts/*" $ fmap (take 3) . recentFirst
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -69,12 +83,15 @@ postCtx =
 
 
 --------------------------------------------------------------------------------
-postList :: ([Item String] -> Compiler [Item String]) -> Compiler String
-postList sortFilter = do
-    posts   <- sortFilter =<< loadAll "posts/*"
+postList :: Pattern -> ([Item String] -> Compiler [Item String]) -> Compiler String
+postList pat sortFilter = do
+    posts   <- sortFilter =<< loadAll pat
     itemTpl <- loadBody "templates/post-item.html"
     list    <- applyTemplateList itemTpl postCtx posts
     return list
+
+allPosts :: Pattern
+allPosts = "posts/*" .||. "archive/2013/*"
 
 --------------------------------------------------------------------------------
 

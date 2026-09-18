@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Double pendulums</title>
+<style>body{background:#111;color:#ddd;font:16px sans-serif;max-width:40em;margin:2em auto;padding:0 1em}
+a{color:#a68bf5}canvas{width:100%;background:#000;border-radius:6px}button{font:inherit;padding:.4em 1em}</style>
+<h1>Double pendulums</h1>
+<p>Two double pendulums, identical except one starts 0.001 radians off. Watch them diverge.</p>
+<canvas id="c" width="800" height="600"></canvas>
+<p><button id="r">Restart</button> <a href="/games.html">&larr; Games</a></p>
+<script>
+const cv=document.getElementById('c'),x=cv.getContext('2d'),g=9.81,L1=1,L2=1,M1=1,M2=1;
+const cols=['#a68bf5','#63c9c8'];let P,trails;
+function init(){P=[[2.2,2.0,0,0],[2.201,2.0,0,0]];trails=[[],[]];}
+function f([a,b,u,v]){
+  const d=a-b,s=Math.sin(d),c=Math.cos(d),D=2*M1+M2-M2*Math.cos(2*d);
+  const du=(-g*(2*M1+M2)*Math.sin(a)-M2*g*Math.sin(a-2*b)-2*s*M2*(v*v*L2+u*u*L1*c))/(L1*D);
+  const dv=(2*s*(u*u*L1*(M1+M2)+g*(M1+M2)*Math.cos(a)+v*v*L2*M2*c))/(L2*D);
+  return [u,v,du,dv];}
+function step(p,h){
+  const add=(p,k,m)=>p.map((e,i)=>e+k[i]*m),k1=f(p),k2=f(add(p,k1,h/2)),k3=f(add(p,k2,h/2)),k4=f(add(p,k3,h));
+  return p.map((e,i)=>e+h/6*(k1[i]+2*k2[i]+2*k3[i]+k4[i]));}
+function draw(){
+  for(let i=0;i<10;i++)P=P.map(p=>step(p,0.002));
+  x.fillStyle='rgba(0,0,0,.25)';x.fillRect(0,0,800,600);
+  const ox=400,oy=250,s=110;
+  P.forEach((p,i)=>{
+    const x1=ox+s*L1*Math.sin(p[0]),y1=oy+s*L1*Math.cos(p[0]),x2=x1+s*L2*Math.sin(p[1]),y2=y1+s*L2*Math.cos(p[1]);
+    trails[i].push([x2,y2]);if(trails[i].length>400)trails[i].shift();
+    x.strokeStyle=cols[i];x.globalAlpha=.4;x.beginPath();trails[i].forEach(([a,b],j)=>j?x.lineTo(a,b):x.moveTo(a,b));x.stroke();
+    x.globalAlpha=1;x.beginPath();x.moveTo(ox,oy);x.lineTo(x1,y1);x.lineTo(x2,y2);x.lineWidth=2;x.stroke();
+    x.fillStyle=cols[i];x.beginPath();x.arc(x2,y2,6,0,7);x.fill();});
+  requestAnimationFrame(draw);}
+document.getElementById('r').onclick=()=>{init();x.clearRect(0,0,800,600);};
+init();draw();
+</script>

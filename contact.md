@@ -2,5 +2,5 @@
 title: Contact
 ---
 
-- **E-mail:** <serialhex@lavabit.com>
+- **E-mail:** <serialhex@gmail.com>
 - **Phone:** (772) 643-2425

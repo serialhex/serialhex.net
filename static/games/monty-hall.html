@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monty Hall simulator</title>
+<style>body{background:#111;color:#ddd;font:16px sans-serif;max-width:40em;margin:2em auto;padding:0 1em}
+a{color:#a68bf5}button{font:inherit;padding:.4em 1em;margin:.2em}td,th{padding:.2em 1em;text-align:right}</style>
+<h1>Monty Hall</h1>
+<p>Three doors, one car. Pick a door; the host opens a goat door; stay or switch?
+Simulate many games to see which strategy wins more.</p>
+<label>Games: <input id="n" type="number" value="10000" min="1" max="10000000"></label>
+<button id="go">Simulate</button>
+<table><tr><th></th><th>Wins</th><th>Rate</th></tr>
+<tr><th>Stay</th><td id="sw"></td><td id="sr"></td></tr>
+<tr><th>Switch</th><td id="tw"></td><td id="tr"></td></tr></table>
+<p><a href="/games.html">&larr; Games</a></p>
+<script>
+document.getElementById('go').onclick=()=>{
+  const n=+document.getElementById('n').value;let stay=0,sw=0;
+  for(let i=0;i<n;i++){
+    const car=Math.random()*3|0,pick=Math.random()*3|0;
+    if(pick===car)stay++;else sw++; // host reveals a goat; switching wins iff first pick was wrong
+  }
+  const $=id=>document.getElementById(id);
+  $('sw').textContent=stay;$('sr').textContent=(100*stay/n).toFixed(2)+'%';
+  $('tw').textContent=sw;$('tr').textContent=(100*sw/n).toFixed(2)+'%';
+};
+</script>
