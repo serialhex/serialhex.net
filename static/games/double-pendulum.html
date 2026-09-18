@@ -1,34 +1,80 @@
 <!DOCTYPE html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Double pendulums</title>
 <style>body{background:#111;color:#ddd;font:16px sans-serif;max-width:40em;margin:2em auto;padding:0 1em}
-a{color:#a68bf5}canvas{width:100%;background:#000;border-radius:6px}button{font:inherit;padding:.4em 1em}</style>
-<h1>Double pendulums</h1>
-<p>Two double pendulums, identical except one starts 0.001 radians off. Watch them diverge.</p>
+a{color:#a68bf5}canvas{width:100%;background:#000;border-radius:6px}button,select{font:inherit;padding:.4em 1em}
+#lyap{font-variant-numeric:tabular-nums}</style>
+<h1>Chaotic pendulums</h1>
+<p>Two identical pendulums, except one starts 0.001 radians off. Watch them diverge.</p>
 <canvas id="c" width="800" height="600"></canvas>
-<p><button id="r">Restart</button> <a href="/games.html">&larr; Games</a></p>
+<p><label>Arms: <select id="n"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+<button id="r">Restart</button></p>
+<p>Approx. largest Lyapunov exponent: <strong id="lyap">&hellip;</strong> <span id="verdict"></span></p>
+<p><small>Estimated by tracking a hidden shadow copy of the left pendulum that is nudged back to a distance of 0.001
+after every frame (Benettin's method). A positive value (per second) means nearby paths diverge exponentially, i.e. chaos.
+It is noisy at first and settles over a few dozen seconds. A single arm is a plain pendulum, so it stays near zero.</small></p>
+<p><a href="/games.html">&larr; Games</a></p>
 <script>
-const cv=document.getElementById('c'),x=cv.getContext('2d'),g=9.81,L1=1,L2=1,M1=1,M2=1;
-const cols=['#a68bf5','#63c9c8'];let P,trails;
-function init(){P=[[2.2,2.0,0,0],[2.201,2.0,0,0]];trails=[[],[]];}
-function f([a,b,u,v]){
-  const d=a-b,s=Math.sin(d),c=Math.cos(d),D=2*M1+M2-M2*Math.cos(2*d);
-  const du=(-g*(2*M1+M2)*Math.sin(a)-M2*g*Math.sin(a-2*b)-2*s*M2*(v*v*L2+u*u*L1*c))/(L1*D);
-  const dv=(2*s*(u*u*L1*(M1+M2)+g*(M1+M2)*Math.cos(a)+v*v*L2*M2*c))/(L2*D);
-  return [u,v,du,dv];}
+const cv=document.getElementById('c'),x=cv.getContext('2d'),g=9.81,H=0.002,STEPS=10,D0=1e-3;
+const cols=['#a68bf5','#63c9c8'];
+let N,P,S,trails,sum,time;
+// state = [theta_0..theta_{N-1}, omega_0..omega_{N-1}]; unit masses and lengths
+function f(s){
+  const th=s.slice(0,N),w=s.slice(N),A=[];
+  for(let i=0;i<N;i++){
+    const row=[];let rhs=-g*(N-i)*Math.sin(th[i]);
+    for(let j=0;j<N;j++){
+      const m=N-Math.max(i,j);
+      row.push(m*Math.cos(th[i]-th[j]));
+      rhs-=m*w[j]*w[j]*Math.sin(th[i]-th[j]);
+    }
+    row.push(rhs);A.push(row);
+  }
+  for(let c=0;c<N;c++){ // gaussian elimination (matrix is symmetric positive definite)
+    for(let r=c+1;r<N;r++){const k=A[r][c]/A[c][c];for(let q=c;q<=N;q++)A[r][q]-=k*A[c][q];}
+  }
+  const a=new Array(N);
+  for(let i=N-1;i>=0;i--){let v=A[i][N];for(let j=i+1;j<N;j++)v-=A[i][j]*a[j];a[i]=v/A[i][i];}
+  return w.concat(a);
+}
 function step(p,h){
   const add=(p,k,m)=>p.map((e,i)=>e+k[i]*m),k1=f(p),k2=f(add(p,k1,h/2)),k3=f(add(p,k2,h/2)),k4=f(add(p,k3,h));
-  return p.map((e,i)=>e+h/6*(k1[i]+2*k2[i]+2*k3[i]+k4[i]));}
+  return p.map((e,i)=>e+h/6*(k1[i]+2*k2[i]+2*k3[i]+k4[i]));
+}
+function init(){
+  N=+document.getElementById('n').value;
+  const a=[];for(let i=0;i<N;i++)a.push(i?2.0:2.2);
+  const z=new Array(N).fill(0),p=a.concat(z),q=p.slice();q[0]+=D0;
+  P=[p,q];S=p.slice();S[0]+=D0; // hidden shadow of P[0] for the Lyapunov estimate
+  trails=[[],[]];sum=0;time=0;
+  document.getElementById('lyap').textContent='…';document.getElementById('verdict').textContent='';
+  x.clearRect(0,0,800,600);
+}
+function lyapunov(ref){
+  let d=0;for(let i=0;i<S.length;i++)d+=(S[i]-ref[i])**2;d=Math.sqrt(d);
+  sum+=Math.log(d/D0);
+  S=S.map((e,i)=>ref[i]+(e-ref[i])*D0/d); // renormalize back to D0
+}
 function draw(){
-  for(let i=0;i<10;i++)P=P.map(p=>step(p,0.002));
+  for(let i=0;i<STEPS;i++){P=P.map(p=>step(p,H));S=step(S,H);}
+  time+=STEPS*H;lyapunov(P[0]);
+  const l=sum/time;
+  document.getElementById('lyap').textContent=l.toFixed(2)+' /s';
+  document.getElementById('verdict').textContent=time<10?'(warming up)':l>0.3?'— chaotic':'— not (very) chaotic';
   x.fillStyle='rgba(0,0,0,.25)';x.fillRect(0,0,800,600);
-  const ox=400,oy=250,s=110;
-  P.forEach((p,i)=>{
-    const x1=ox+s*L1*Math.sin(p[0]),y1=oy+s*L1*Math.cos(p[0]),x2=x1+s*L2*Math.sin(p[1]),y2=y1+s*L2*Math.cos(p[1]);
-    trails[i].push([x2,y2]);if(trails[i].length>400)trails[i].shift();
-    x.strokeStyle=cols[i];x.globalAlpha=.4;x.beginPath();trails[i].forEach(([a,b],j)=>j?x.lineTo(a,b):x.moveTo(a,b));x.stroke();
-    x.globalAlpha=1;x.beginPath();x.moveTo(ox,oy);x.lineTo(x1,y1);x.lineTo(x2,y2);x.lineWidth=2;x.stroke();
-    x.fillStyle=cols[i];x.beginPath();x.arc(x2,y2,6,0,7);x.fill();});
-  requestAnimationFrame(draw);}
-document.getElementById('r').onclick=()=>{init();x.clearRect(0,0,800,600);};
+  const ox=400,oy=300,s=240/N;
+  P.forEach((p,k)=>{
+    let px=ox,py=oy;const pts=[[px,py]];
+    for(let i=0;i<N;i++){px+=s*Math.sin(p[i]);py+=s*Math.cos(p[i]);pts.push([px,py]);}
+    trails[k].push([px,py]);if(trails[k].length>400)trails[k].shift();
+    x.lineWidth=1;x.strokeStyle=cols[k];x.globalAlpha=.4;x.beginPath();
+    trails[k].forEach(([a,b],j)=>j?x.lineTo(a,b):x.moveTo(a,b));x.stroke();
+    x.globalAlpha=1;x.lineWidth=2;x.beginPath();
+    pts.forEach(([a,b],j)=>j?x.lineTo(a,b):x.moveTo(a,b));x.stroke();
+    x.fillStyle=cols[k];x.beginPath();x.arc(px,py,6,0,7);x.fill();
+  });
+  requestAnimationFrame(draw);
+}
+document.getElementById('r').onclick=init;
+document.getElementById('n').onchange=init;
 init();draw();
 </script>
